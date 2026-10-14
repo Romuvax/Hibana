@@ -1,0 +1,13 @@
+﻿services:
+  rabbitmq:
+    image: rabbitmq:4.3.6-management-alpine
+    ports:
+      - "5672:5672"
+      - "127.0.0.1:15672:15672"
+    expose:
+      - "5672"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${MESSAGING_RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${MESSAGING_RABBITMQ_DEFAULT_PASS}
+    volumes:
+      - messaging:/var/lib/rabbitmq

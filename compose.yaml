@@ -1,0 +1,39 @@
+﻿services:
+#  dv1-app:
+#    image: dv1-app
+#    build:
+#      context: .
+#      dockerfile: dv1-app/Dockerfile
+  
+  database:
+    extends:
+      file: database.yaml
+      service: postgres
+      
+  matchmakingcache:
+    extends:
+      file: matchmaking.yaml
+      service: matchmakingcache
+
+  messaging:
+    extends:
+      file: messaging.yaml
+      service: rabbitmq
+
+#  hibanatest:
+#    image: hibanatest
+#    build:
+#      context: .
+#      dockerfile: hibanatest/Dockerfile
+#    depends_on:
+#      - database
+#      - matchmakingcache
+#      - messaging
+
+volumes:
+  database:
+    name: "hibana-database"
+  messaging:
+    name: "hibana-messaging"
+  matchmakingcache:
+    name: "hibana-matchmakingcache"
